@@ -157,7 +157,7 @@ export default class APIController {
         request.rawQueryString = decodeURIComponent(request.rawQueryString)
         return parser(
           thisParamFinalizedOps,
-          request.rawQueryString,
+          decodeURIComponent(request.rawQueryString),
           request.queryParams,
           { method: request.method, uri: request.uri }
         );
@@ -195,7 +195,7 @@ export default class APIController {
     const finalizedRequest: FinalizedRequest = {
       ...request,
       queryParams: {
-        ...parseQueryParams(request.queryParams),
+        ...parseQueryParams(request.queryParams, request.rawQueryString),
         filter: guardedQueryParamParse(
           this.filterParamParser,
           "filter",
