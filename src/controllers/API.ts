@@ -153,6 +153,8 @@ export default class APIController {
       thisParamFinalizedOps: ParserOperatorsConfig
     ) => {
       try {
+        // @ts-ignore
+        request.rawQueryString = decodeURIComponent(request.rawQueryString)
         return parser(
           thisParamFinalizedOps,
           request.rawQueryString,
