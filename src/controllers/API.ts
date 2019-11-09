@@ -155,7 +155,7 @@ export default class APIController {
       try {
         return parser(
           thisParamFinalizedOps,
-          request.rawQueryString,
+          decodeURIComponent(request.rawQueryString),
           request.queryParams,
           { method: request.method, uri: request.uri }
         );
